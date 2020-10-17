@@ -3,8 +3,8 @@
 }
 
 #passwordLength:focus {
-  border-color: #234e52 !important;
-  box-shadow: 0px 0px 0px 4px #234e52;
+  border-color: #319795 !important;
+  box-shadow: 0px 0px 0px 4px #319795;
   transition: 0.25s;
 }
 
