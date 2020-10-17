@@ -4,7 +4,11 @@
 
 const output = document.getElementById("output");
 const error = document.getElementById("error");
-const copy = document.getElementById("copy");
+const copy = document.getElementById("copyToClipboard");
+const includeLowerCase = document.getElementById("includeLowerCase");
+const includeSymbols = document.getElementById("includeSymbolsSwitch");
+const includeNumbers = document.getElementById("includeNumbers");
+const includeUpperCase = document.getElementById("includeUpperCase");
 
 // ============================================================
 // Arrays
@@ -19,7 +23,7 @@ const specialCharacters = '¬!"£$%^&*()-_=+#~[]{}@:;,.|/'.split("");
 // const specialCharacters = "!£$%^&*()@".split("");
 
 // ============================================================
-// Generate A Basic Password
+// Generate A Basic Password (Lower Case Letters Only)
 // ============================================================
 
 // Generates a password that consists of only lower case letters
@@ -29,7 +33,6 @@ function generateBasicPassword() {
   let hereIsYourPassword = "";
 
   for (i = 0; i < passwordLength; i++) {
-    // This creates a random number from 0 to whatever the highest index in the array is. We use this to randomly pick a character from the array
     let randomNumber = Math.floor(Math.random() * alphabetLowerCase.length);
 
     hereIsYourPassword += alphabetLowerCase[randomNumber];
@@ -37,6 +40,30 @@ function generateBasicPassword() {
 
   output.innerHTML = hereIsYourPassword;
   return hereIsYourPassword;
+}
+
+// ============================================================
+// Generate A Basic Password Including Symbols/Special Characters
+// ============================================================
+
+// Generates a password that consists of lower case letters and symbols
+
+function generateBasicPasswordWithSpecialSymbols() {
+  let passwordLength = document.getElementById("passwordLength").value;
+  let alphabetLowerCasePlusSpecialCharacters = alphabetLowerCase.concat(
+    specialCharacters
+  );
+
+  let hereIsYourPassword = "";
+
+  for (i = 0; i < passwordLength; i++) {
+    let randomNumber = Math.floor(
+      Math.random() * alphabetLowerCasePlusSpecialCharacters.length
+    );
+
+    hereIsYourPassword += alphabetLowerCasePlusSpecialCharacters[randomNumber];
+  }
+  output.innerHTML = hereIsYourPassword;
 }
 
 // ============================================================
@@ -57,30 +84,6 @@ function generateBasicPasswordWithNumbers() {
     );
 
     hereIsYourPassword += alphabetLowerCasePlusNumbers[randomNumber];
-  }
-  output.innerHTML = hereIsYourPassword;
-}
-
-// ============================================================
-// Generate A Basic Password Including Symbols
-// ============================================================
-
-// Generates a password that consists of lower case letters and symbols
-
-function generateBasicPasswordWithSpecialSymbols() {
-  let passwordLength = document.getElementById("passwordLength").value;
-  let alphabetLowerCasePlusSpecialCharacters = alphabetLowerCase.concat(
-    specialCharacters
-  );
-
-  let hereIsYourPassword = "";
-
-  for (i = 0; i < passwordLength; i++) {
-    let randomNumber = Math.floor(
-      Math.random() * alphabetLowerCasePlusSpecialCharacters.length
-    );
-
-    hereIsYourPassword += alphabetLowerCasePlusSpecialCharacters[randomNumber];
   }
   output.innerHTML = hereIsYourPassword;
 }
@@ -219,6 +222,157 @@ function generateBasicPasswordWithAllOptions() {
 }
 
 // ============================================================
+// Generate A Special-Characters-Only Password
+// ============================================================
+
+// Generates a password that consists of only special characters
+
+function generateSpecialCharactersOnly() {
+  let passwordLength = document.getElementById("passwordLength").value;
+  let hereIsYourPassword = "";
+
+  for (i = 0; i < passwordLength; i++) {
+    let randomNumber = Math.floor(Math.random() * specialCharacters.length);
+
+    hereIsYourPassword += specialCharacters[randomNumber];
+  }
+
+  output.innerHTML = hereIsYourPassword;
+  return hereIsYourPassword;
+}
+
+// ============================================================
+// Generate A Symbols Password Including Numbers
+// ============================================================
+
+// Generates a password that consists of symbols and numbers
+
+function generateSpecialSymbolsWithNumbers() {
+  let passwordLength = document.getElementById("passwordLength").value;
+  let specialCharactersPlusNumbers = specialCharacters.concat(numbers);
+
+  let hereIsYourPassword = "";
+
+  for (i = 0; i < passwordLength; i++) {
+    let randomNumber = Math.floor(
+      Math.random() * specialCharactersPlusNumbers.length
+    );
+
+    hereIsYourPassword += specialCharactersPlusNumbers[randomNumber];
+  }
+  output.innerHTML = hereIsYourPassword;
+}
+
+// ============================================================
+// Generate A Symbols Password Including Upper Case letters
+// ============================================================
+
+// Generates a password that consists of symbols and upper case
+
+function generateSpecialSymbolsWithUpperCase() {
+  let passwordLength = document.getElementById("passwordLength").value;
+  let specialCharactersPlusUpperCase = specialCharacters.concat(
+    alphabetUpperCase
+  );
+
+  let hereIsYourPassword = "";
+
+  for (i = 0; i < passwordLength; i++) {
+    let randomNumber = Math.floor(
+      Math.random() * specialCharactersPlusUpperCase.length
+    );
+
+    hereIsYourPassword += specialCharactersPlusUpperCase[randomNumber];
+  }
+  output.innerHTML = hereIsYourPassword;
+}
+
+// ============================================================
+// Generate A Symbols Password Including Numbers And Upper Case
+// ============================================================
+
+// Generates a password that consists of symbols, numbers and upper case letters
+
+function generateSymbolsPasswordWithNumbersAndUpperCase() {
+  let passwordLength = document.getElementById("passwordLength").value;
+  let symbolsPlusNumbers = specialCharacters.concat(numbers);
+  let symbolsPlusNumbersPlusUpperCase = symbolsPlusNumbers.concat(
+    alphabetUpperCase
+  );
+
+  let hereIsYourPassword = "";
+
+  for (i = 0; i < passwordLength; i++) {
+    let randomNumber = Math.floor(
+      Math.random() * symbolsPlusNumbersPlusUpperCase.length
+    );
+
+    hereIsYourPassword += symbolsPlusNumbersPlusUpperCase[randomNumber];
+  }
+  output.innerHTML = hereIsYourPassword;
+}
+
+// ============================================================
+// Generate A Numbers-Only Password
+// ============================================================
+
+// Generates a password that consists of only numbers
+
+function generateNumbersOnly() {
+  let passwordLength = document.getElementById("passwordLength").value;
+  let hereIsYourPassword = "";
+
+  for (i = 0; i < passwordLength; i++) {
+    let randomNumber = Math.floor(Math.random() * numbers.length);
+
+    hereIsYourPassword += numbers[randomNumber];
+  }
+
+  output.innerHTML = hereIsYourPassword;
+  return hereIsYourPassword;
+}
+
+// ============================================================
+// Generate A Numbers Password Including Upper Case Letters
+// ============================================================
+
+// Generates a password that consists of numbers and upper case letters
+
+function generateNumbersPasswordWithUpperCase() {
+  let passwordLength = document.getElementById("passwordLength").value;
+  let numbersPlusUpperCase = numbers.concat(alphabetUpperCase);
+
+  let hereIsYourPassword = "";
+
+  for (i = 0; i < passwordLength; i++) {
+    let randomNumber = Math.floor(Math.random() * numbersPlusUpperCase.length);
+
+    hereIsYourPassword += numbersPlusUpperCase[randomNumber];
+  }
+  output.innerHTML = hereIsYourPassword;
+}
+
+// ============================================================
+// Generate A Upper-Case-Letters-Only Password
+// ============================================================
+
+// Generates a password that consists of only upper case letters
+
+function generateUpperCaseOnly() {
+  let passwordLength = document.getElementById("passwordLength").value;
+  let hereIsYourPassword = "";
+
+  for (i = 0; i < passwordLength; i++) {
+    let randomNumber = Math.floor(Math.random() * alphabetUpperCase.length);
+
+    hereIsYourPassword += alphabetUpperCase[randomNumber];
+  }
+
+  output.innerHTML = hereIsYourPassword;
+  return hereIsYourPassword;
+}
+
+// ============================================================
 // Check Password Input
 // ============================================================
 
@@ -249,26 +403,43 @@ function checkPasswordInput() {
     alphabetLowerCase.some((letter) => passwordLength.includes(letter))
   ) {
     output.innerHTML = "";
+    output.classList.add("hidden");
+    copy.classList.add("hidden");
     error.classList.remove("hidden");
     error.innerHTML = "Password length cannot contain letters";
   } else if (
     alphabetUpperCase.some((letter) => passwordLength.includes(letter))
   ) {
     output.innerHTML = "";
+    output.classList.add("hidden");
+    copy.classList.add("hidden");
     error.classList.remove("hidden");
     error.innerHTML = "Password length cannot contain letters";
   } else if (
     specialCharacters.some((character) => passwordLength.includes(character))
   ) {
     output.innerHTML = "";
+    output.classList.add("hidden");
+    copy.classList.add("hidden");
     error.classList.remove("hidden");
     error.innerHTML = "Password length cannot contain special characters";
+  } else if (
+    includeLowerCase.checked === false &&
+    includeSymbols.checked === false &&
+    includeNumbers.checked === false &&
+    includeUpperCase.checked === false
+  ) {
+    output.innerHTML = "";
+    output.classList.add("hidden");
+    copy.classList.add("hidden");
+    error.classList.remove("hidden");
+    error.innerHTML = "Please select at least one option from above";
   } else {
     error.innerHTML = "";
     error.classList.add("hidden");
     output.classList.remove("hidden");
     copy.classList.remove("hidden");
-    copy.innerText = "Copy to clipboard";
+    copy.innerText = "Copy To Clipboard";
   }
 }
 
@@ -279,63 +450,133 @@ function checkPasswordInput() {
 // Chooses which function to run based on which checkboxes are checked
 
 function chooseFunction() {
-  const symbols = document.getElementById("includeSymbolsSwitch");
-  const numbers = document.getElementById("includeNumbers");
-  const upperCase = document.getElementById("includeUpperCase");
-
   if (
-    symbols.checked === true &&
-    numbers.checked === false &&
-    upperCase.checked === false
+    includeLowerCase.checked === false &&
+    includeSymbols.checked === false &&
+    includeNumbers.checked === false &&
+    includeUpperCase.checked === false
+  ) {
+    checkPasswordInput();
+  } else if (
+    includeLowerCase.checked === true &&
+    includeSymbols.checked === false &&
+    includeNumbers.checked === false &&
+    includeUpperCase.checked === false
+  ) {
+    checkPasswordInput();
+    generateBasicPassword();
+  } else if (
+    includeLowerCase.checked === true &&
+    includeSymbols.checked === true &&
+    includeNumbers.checked === false &&
+    includeUpperCase.checked === false
   ) {
     checkPasswordInput();
     generateBasicPasswordWithSpecialSymbols();
-    debugPasswordLength();
   } else if (
-    symbols.checked === false &&
-    numbers.checked === true &&
-    upperCase.checked === false
+    includeLowerCase.checked === true &&
+    includeSymbols.checked === false &&
+    includeNumbers.checked === true &&
+    includeUpperCase.checked === false
   ) {
     checkPasswordInput();
     generateBasicPasswordWithNumbers();
   } else if (
-    symbols.checked === false &&
-    numbers.checked === false &&
-    upperCase.checked === true
+    includeLowerCase.checked === true &&
+    includeSymbols.checked === false &&
+    includeNumbers.checked === false &&
+    includeUpperCase.checked === true
   ) {
     checkPasswordInput();
     generateBasicPasswordWithUpperCase();
   } else if (
-    symbols.checked === true &&
-    numbers.checked === true &&
-    upperCase.checked === false
+    includeLowerCase.checked === true &&
+    includeSymbols.checked === true &&
+    includeNumbers.checked === true &&
+    includeUpperCase.checked === false
   ) {
     checkPasswordInput();
     generateBasicPasswordWithSpecialSymbolsAndNumbers();
   } else if (
-    symbols.checked === true &&
-    numbers.checked === false &&
-    upperCase.checked === true
+    includeLowerCase.checked === true &&
+    includeSymbols.checked === true &&
+    includeNumbers.checked === false &&
+    includeUpperCase.checked === true
   ) {
     checkPasswordInput();
     generateBasicPasswordWithSpecialSymbolsAndUpperCase();
   } else if (
-    symbols.checked === false &&
-    numbers.checked === true &&
-    upperCase.checked === true
+    includeLowerCase.checked === true &&
+    includeSymbols.checked === false &&
+    includeNumbers.checked === true &&
+    includeUpperCase.checked === true
   ) {
     checkPasswordInput();
     generateBasicPasswordWithNumbersAndUpperCase();
   } else if (
-    symbols.checked === true &&
-    numbers.checked === true &&
-    upperCase.checked === true
+    includeLowerCase.checked === true &&
+    includeSymbols.checked === true &&
+    includeNumbers.checked === true &&
+    includeUpperCase.checked === true
   ) {
     checkPasswordInput();
     generateBasicPasswordWithAllOptions();
-  } else {
+  } else if (
+    includeLowerCase.checked === false &&
+    includeSymbols.checked === true &&
+    includeNumbers.checked === false &&
+    includeUpperCase.checked === false
+  ) {
     checkPasswordInput();
-    generateBasicPassword();
+    generateSpecialCharactersOnly();
+  } else if (
+    includeLowerCase.checked === false &&
+    includeSymbols.checked === false &&
+    includeNumbers.checked === true &&
+    includeUpperCase.checked === false
+  ) {
+    checkPasswordInput();
+    generateNumbersOnly();
+  } else if (
+    includeLowerCase.checked === false &&
+    includeSymbols.checked === false &&
+    includeNumbers.checked === false &&
+    includeUpperCase.checked === true
+  ) {
+    checkPasswordInput();
+    generateUpperCaseOnly();
+  } else if (
+    includeLowerCase.checked === false &&
+    includeSymbols.checked === true &&
+    includeNumbers.checked === true &&
+    includeUpperCase.checked === false
+  ) {
+    checkPasswordInput();
+    generateSpecialSymbolsWithNumbers();
+  } else if (
+    includeLowerCase.checked === false &&
+    includeSymbols.checked === true &&
+    includeNumbers.checked === false &&
+    includeUpperCase.checked === true
+  ) {
+    checkPasswordInput();
+    generateSpecialSymbolsWithUpperCase();
+  } else if (
+    includeLowerCase.checked === false &&
+    includeSymbols.checked === true &&
+    includeNumbers.checked === true &&
+    includeUpperCase.checked === true
+  ) {
+    checkPasswordInput();
+    generateSymbolsPasswordWithNumbersAndUpperCase();
+  } else if (
+    includeLowerCase.checked === false &&
+    includeSymbols.checked === false &&
+    includeNumbers.checked === true &&
+    includeUpperCase.checked === true
+  ) {
+    checkPasswordInput();
+    generateNumbersPasswordWithUpperCase();
   }
 }
 
@@ -346,7 +587,7 @@ function chooseFunction() {
 // Copies the generated password to the clipboard
 
 // stackoverflow:
-function myFunction() {
+function copyPassword() {
   var copyText = output.textContent;
   copyToClipBoard(copyText);
   copy.innerText = "Copied";
