@@ -1,17 +1,17 @@
-/* * {
-  box-sizing: border-box;
-} */
-
 #passwordLength {
   transition: 0.25s;
 }
 
 #passwordLength:focus {
-  border-color: #234e52 !important;
-  box-shadow: 0px 0px 0px 4px #234e52;
+  border-color: #319795 !important;
+  box-shadow: 0px 0px 0px 4px #319795;
   transition: 0.25s;
 }
 
 .box-shadow {
   box-shadow: 4px 4px 5px;
+}
+
+.darker-than-teal-900:hover {
+  background-color: #121f20;
 }
